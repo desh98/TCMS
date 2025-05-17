@@ -1,4 +1,4 @@
-from domain.models import Class, UserRole, ClassStatus
+from domain.models import Class, Student, TeacherAssignment, UserRole, ClassStatus
 from infrastructure.database import db
 from fastapi import HTTPException
 import logging

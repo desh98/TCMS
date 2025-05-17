@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from domain.models import (
     User, LoginRequest, Student, Teacher, Subject, Class, TeacherAssignment, Payment, Attendance, Grade,
     EntityCounts, TodayIncome, TodayClassesResponse
@@ -13,6 +14,15 @@ import uvicorn
 
 app = FastAPI(title="Tuition Class Management System")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],
+    allow_credentials=True,
+    allow_methods=["*"],             
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup_event():
